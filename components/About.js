@@ -15,7 +15,13 @@ export default function About() {
       >
         <div data-animate="reveal">
           <p className="section-kicker">About</p>
-          <h2 className="section-title mt-4">I care about how a site feels as much as how it runs.</h2>
+          <h2 className="section-title mt-4">
+            I approach software engineering with a passion for clean code and resilient systems.
+          </h2>
+          <div
+            data-animate="line"
+            className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
+          />
         </div>
 
         <div className="grid gap-6">
@@ -23,24 +29,34 @@ export default function About() {
             data-animate="reveal"
             className="max-w-3xl text-lg leading-8 text-zinc-600 md:text-xl"
           >
-            My best work lives in the space between polish and reliability. I like soft visual
-            systems, confident typography, and delivery pipelines that keep beautiful products fast,
-            stable, and easy to maintain.
+            As a motivated fresher with a solid foundation in computer science and full-stack development, I am eager to apply my skills to real-world challenges. I believe the strongest applications are clearly structured, highly accessible, and supported by robust backend architectures.
           </p>
 
           <div className="grid gap-4 md:grid-cols-2" data-animate="stagger">
             <article data-animate-item className="panel p-6">
-              <p className="mono text-xs uppercase tracking-[0.28em] text-rose-500">UI Systems</p>
+              <p className="mono text-xs uppercase tracking-[0.28em] text-rose-500">
+                Interface Strategy
+              </p>
+              <div
+                data-animate="line"
+                className="mt-4 h-px w-16 bg-gradient-to-r from-rose-200 via-rose-300 to-transparent"
+              />
               <p className="mt-4 text-sm leading-7 text-zinc-600">
-                Landing pages, product surfaces, and design-led layouts that feel premium rather
-                than generic.
+                I build landing pages, product surfaces, and component systems that feel premium,
+                clear, and consistent rather than generic or over-designed.
               </p>
             </article>
             <article data-animate-item className="panel p-6">
-              <p className="mono text-xs uppercase tracking-[0.28em] text-rose-500">Platform Systems</p>
+              <p className="mono text-xs uppercase tracking-[0.28em] text-rose-500">
+                Delivery Architecture
+              </p>
+              <div
+                data-animate="line"
+                className="mt-4 h-px w-16 bg-gradient-to-r from-rose-200 via-rose-300 to-transparent"
+              />
               <p className="mt-4 text-sm leading-7 text-zinc-600">
-                Infrastructure, CI/CD, and cloud workflows that give teams confidence to ship at a
-                high standard.
+                I support that visual quality with CI/CD, cloud infrastructure, and maintainable
+                frontend architecture so shipping stays smooth after launch.
               </p>
             </article>
           </div>

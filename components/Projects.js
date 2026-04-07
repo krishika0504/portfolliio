@@ -6,35 +6,39 @@ import { cardHover, fadeUp, staggerContainer } from '../styles/motion';
 const projects = [
   {
     tag: 'Featured',
-    title: 'Roseline Commerce',
+    title: 'Maison Roseline Commerce',
     description:
-      'A fashion-forward storefront with immersive product storytelling, fast transitions, and reliable checkout architecture.',
-    impact: 'Built to feel editorial while keeping the buying journey simple and high-converting.',
+      'A luxury storefront concept combining editorial layouts, motion-led storytelling, and a friction-light checkout journey.',
+    impact:
+      'Designed to feel premium at first glance while preserving speed, mobile clarity, and purchase confidence.',
     stack: ['Next.js', 'Anime.js', 'Stripe', 'Headless CMS'],
     featured: true,
   },
   {
     tag: 'Platform',
-    title: 'VelvetOps Console',
+    title: 'VelvetOps Release Console',
     description:
-      'A release control surface for deployment approvals, rollout visibility, and environment health.',
-    impact: 'Turned operational complexity into a calmer, more visual workflow for engineering teams.',
+      'A deployment control surface for approvals, rollout visibility, environment health, and release management.',
+    impact:
+      'Transformed operational data into a calmer interface that helped teams ship with more confidence.',
     stack: ['React', 'Node.js', 'Docker', 'GitHub Actions'],
   },
   {
     tag: 'Analytics',
     title: 'Cloud Cost Atelier',
     description:
-      'An elegant cloud spend dashboard with anomaly alerts and weekly optimization snapshots.',
-    impact: 'Made cost data easier to understand without losing technical depth.',
+      'A polished cost intelligence dashboard surfacing anomalies, weekly summaries, and optimization opportunities for cloud teams.',
+    impact:
+      'Made dense infrastructure metrics more actionable through clearer hierarchy and visual storytelling.',
     stack: ['TypeScript', 'AWS', 'Terraform', 'CloudWatch'],
   },
   {
     tag: 'Experience',
-    title: 'Studio Booking Suite',
+    title: 'Studio Reservation Suite',
     description:
-      'A polished reservations platform with branded flows, instant confirmations, and flexible admin tools.',
-    impact: 'Balanced premium presentation with dependable day-to-day booking operations.',
+      'A branded reservations platform with elegant scheduling flows, instant confirmations, and streamlined admin tooling.',
+    impact:
+      'Balanced a premium customer-facing experience with dependable day-to-day booking operations.',
     stack: ['Next.js', 'PostgreSQL', 'Redis', 'Node.js'],
   },
   {
@@ -60,11 +64,15 @@ export default function Projects() {
         >
           <p className="section-kicker">Projects</p>
           <h2 className="section-title mt-4">
-            Selected work with stronger layout, better hierarchy, and clearer personality.
+            Work framed as products, not placeholders.
           </h2>
+          <div
+            data-animate="line"
+            className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
+          />
           <p className="section-subtitle">
-            These concepts are framed like real product pieces, not filler cards, so the portfolio
-            feels curated instead of copied.
+            Each concept is written and structured like a real case-study teaser, with clearer
+            outcomes, better hierarchy, and more professional storytelling.
           </p>
         </motion.div>
 
@@ -95,6 +103,11 @@ export default function Projects() {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
+
+                <div
+                  data-animate="line"
+                  className="mt-5 h-px w-full bg-gradient-to-r from-rose-200 via-rose-300 to-transparent"
+                />
 
                 <h3 className="mt-6 text-2xl font-semibold text-zinc-950">{project.title}</h3>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-600">{project.description}</p>

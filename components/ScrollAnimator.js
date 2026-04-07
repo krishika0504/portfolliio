@@ -29,6 +29,7 @@ export default function ScrollAnimator() {
       element.style.opacity = '0';
       element.style.transform = 'translateY(56px)';
       element.style.filter = 'blur(10px)';
+      element.style.willChange = 'transform, opacity, filter';
 
       const entry = animate(element, {
         opacity: [0, 1],
@@ -63,6 +64,7 @@ export default function ScrollAnimator() {
       items.forEach((item) => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(44px) scale(.98)';
+        item.style.willChange = 'transform, opacity';
       });
 
       const entry = animate(items, {
@@ -70,7 +72,7 @@ export default function ScrollAnimator() {
         translateY: [44, 0],
         scale: [0.98, 1],
         delay: reduceMotion ? 0 : stagger(120),
-        duration: reduceMotion ? 260 : 900,
+        duration: reduceMotion ? 260 : 960,
         ease: 'outExpo',
         autoplay: false,
       });
@@ -78,6 +80,32 @@ export default function ScrollAnimator() {
       const observer = onScroll({
         target: group,
         enter: 'top bottom-=14%',
+        onEnter: () => entry.play(),
+      });
+
+      cleanups.push(() => {
+        observer.revert();
+        entry.revert();
+      });
+    });
+
+    const lines = Array.from(document.querySelectorAll('[data-animate="line"]'));
+    lines.forEach((element) => {
+      element.style.transformOrigin = 'left center';
+      element.style.transform = 'scaleX(0)';
+      element.style.opacity = '0.45';
+
+      const entry = animate(element, {
+        scaleX: [0, 1],
+        opacity: [0.45, 1],
+        duration: reduceMotion ? 240 : 820,
+        ease: 'outExpo',
+        autoplay: false,
+      });
+
+      const observer = onScroll({
+        target: element,
+        enter: 'top bottom-=10%',
         onEnter: () => entry.play(),
       });
 

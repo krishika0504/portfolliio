@@ -4,18 +4,18 @@ import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '../styles/motion';
 
 const skills = [
-  { name: 'Three.js', type: '3D UI' },
-  { name: 'Anime.js', type: 'Motion' },
-  { name: 'Next.js', type: 'Frontend' },
-  { name: 'React', type: 'Frontend' },
-  { name: 'Node.js', type: 'Backend' },
-  { name: 'Docker', type: 'Containers' },
-  { name: 'Kubernetes', type: 'Infra' },
-  { name: 'Terraform', type: 'IaC' },
-  { name: 'AWS', type: 'Cloud' },
-  { name: 'PostgreSQL', type: 'Data' },
+  { name: 'Three.js', type: 'Immersive UI' },
+  { name: 'Anime.js', type: 'Interaction Motion' },
+  { name: 'Next.js', type: 'Frontend Architecture' },
+  { name: 'React', type: 'Component Systems' },
+  { name: 'Node.js', type: 'Backend Services' },
+  { name: 'Docker', type: 'Containerization' },
+  { name: 'Kubernetes', type: 'Platform Orchestration' },
+  { name: 'Terraform', type: 'Infrastructure as Code' },
+  { name: 'AWS', type: 'Cloud Delivery' },
+  { name: 'PostgreSQL', type: 'Data Layer' },
   { name: 'Redis', type: 'Caching' },
-  { name: 'GitHub Actions', type: 'Automation' },
+  { name: 'GitHub Actions', type: 'Release Automation' },
 ];
 
 export default function Skills() {
@@ -30,10 +30,16 @@ export default function Skills() {
           data-animate="reveal"
         >
           <p className="section-kicker">Skills</p>
-          <h2 className="section-title mt-4">Design-forward frontend work backed by solid engineering tools.</h2>
+          <h2 className="section-title mt-4">
+            A toolkit shaped around premium frontend execution and dependable delivery.
+          </h2>
+          <div
+            data-animate="line"
+            className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
+          />
           <p className="section-subtitle">
-            The visual layer matters, but so do the systems that keep it responsive, maintainable,
-            and production-ready.
+            I use motion, rendering, UI architecture, cloud tooling, and release automation together
+            so the final product feels deliberate in both design and engineering.
           </p>
         </motion.div>
 

@@ -9,21 +9,21 @@ const experiences = [
     company: 'Tech Innovation Labs',
     period: '2023 - Present',
     detail:
-      'Led platform modernization, interface refinement, and rollout automation with a focus on both visual quality and release confidence.',
+      'Led platform modernization, interface refinement, and rollout automation with a focus on raising product quality while improving release confidence.',
   },
   {
     role: 'DevOps Engineer',
     company: 'CloudScale Solutions',
     period: '2021 - 2022',
     detail:
-      'Implemented Infrastructure as Code, observability workflows, and cloud optimization systems to improve uptime and delivery speed.',
+      'Implemented Infrastructure as Code, observability workflows, and cloud optimization systems to improve uptime, visibility, and delivery speed.',
   },
   {
     role: 'Full Stack Developer',
     company: 'Digital Ventures Inc',
     period: '2020 - 2021',
     detail:
-      'Built customer-facing applications with scalable APIs, thoughtful UI decisions, and strong performance practices.',
+      'Built customer-facing applications with scalable APIs, thoughtful UI implementation, and performance-conscious frontend architecture.',
   },
 ];
 
@@ -40,11 +40,15 @@ export default function Experience() {
         >
           <p className="section-kicker">Experience</p>
           <h2 className="section-title mt-4">
-            A career shaped by product polish, delivery discipline, and scale.
+            A track record built on execution, quality, and dependable delivery.
           </h2>
+          <div
+            data-animate="line"
+            className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
+          />
           <p className="section-subtitle">
-            I bring the mindset of a builder who wants the front end to feel refined and the backend
-            to behave flawlessly.
+            My experience spans frontend product work, DevOps systems, and the connective layer
+            between them, where strong products usually succeed or fail.
           </p>
         </motion.div>
 
@@ -69,6 +73,10 @@ export default function Experience() {
                 <span className="mono text-xs uppercase tracking-[0.2em] text-zinc-400">{item.period}</span>
               </div>
               <p className="mt-2 text-sm font-medium text-rose-600">{item.company}</p>
+              <div
+                data-animate="line"
+                className="mt-4 h-px w-16 bg-gradient-to-r from-rose-200 via-rose-300 to-transparent"
+              />
               <p className="mt-3 text-sm leading-7 text-zinc-600 md:text-base">{item.detail}</p>
             </motion.article>
           ))}

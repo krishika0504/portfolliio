@@ -15,8 +15,8 @@ export default function Footer() {
           transition={{ duration: 0.45 }}
           className="text-sm text-zinc-500"
         >
-          Copyright {year} Krishika Rajput. Rebuilt with Next.js, Three.js, Anime.js, and a white
-          rose visual system.
+          Designed and engineered by Krishika Rajput in {year}, using Next.js, Three.js, Anime.js,
+          and a design-led development workflow.
         </motion.p>
 
         <motion.button

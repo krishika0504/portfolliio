@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export default function SceneCanvas() {
   const canvasRef = useRef(null);
@@ -42,70 +43,50 @@ export default function SceneCanvas() {
     const cluster = new THREE.Group();
     scene.add(cluster);
 
-    const core = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(2.15, 14),
-      new THREE.MeshPhysicalMaterial({
-        color: 0xfff8fc,
-        roughness: 0.08,
-        metalness: 0.05,
-        transmission: 0.58,
-        thickness: 1.4,
-        transparent: true,
-        opacity: 0.96,
-        iridescence: 0.7,
-        iridescenceIOR: 1.3,
-        iridescenceThicknessRange: [100, 480],
-      })
-    );
-    cluster.add(core);
+    let model = null;
+    let fallbackMesh = null;
 
-    const halo = new THREE.Mesh(
-      new THREE.TorusGeometry(3.55, 0.05, 32, 260),
-      new THREE.MeshBasicMaterial({
-        color: 0xff7dbd,
-        transparent: true,
-        opacity: 0.42,
-      })
-    );
-    halo.rotation.x = Math.PI * 0.56;
-    halo.rotation.y = Math.PI * 0.12;
-    cluster.add(halo);
+    const loader = new GLTFLoader();
+    loader.load(
+      '/models/riko_mikogami.glb',
+      (gltf) => {
+        model = gltf.scene;
 
-    const haloTwo = new THREE.Mesh(
-      new THREE.TorusGeometry(2.85, 0.035, 26, 240),
-      new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.58,
-      })
-    );
-    haloTwo.rotation.x = Math.PI * 0.18;
-    haloTwo.rotation.z = Math.PI * 0.24;
-    cluster.add(haloTwo);
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxAxis = Math.max(size.x, size.y, size.z) || 1;
+        const targetSize = 5.2;
+        const scale = targetSize / maxAxis;
 
-    const wire = new THREE.Mesh(
-      new THREE.IcosahedronGeometry(2.9, 1),
-      new THREE.MeshBasicMaterial({
-        color: 0xf4b2d0,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.18,
-      })
-    );
-    wire.rotation.z = Math.PI * 0.12;
-    cluster.add(wire);
+        model.scale.setScalar(scale);
+        model.position.set(-center.x * scale, -center.y * scale + 0.8, -center.z * scale);
 
-    const orbitGroup = new THREE.Group();
-    const satellite = new THREE.Mesh(
-      new THREE.SphereGeometry(0.24, 24, 24),
-      new THREE.MeshStandardMaterial({
-        color: 0xff6ead,
-        roughness: 0.25,
-        metalness: 0.12,
-      })
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.frustumCulled = false;
+          }
+        });
+
+        cluster.add(model);
+      },
+      undefined,
+      () => {
+        fallbackMesh = new THREE.Mesh(
+          new THREE.IcosahedronGeometry(2.2, 8),
+          new THREE.MeshPhysicalMaterial({
+            color: 0xfff7fb,
+            roughness: 0.16,
+            metalness: 0.1,
+            transmission: 0.45,
+            thickness: 1,
+            transparent: true,
+            opacity: 0.92,
+          })
+        );
+        cluster.add(fallbackMesh);
+      }
     );
-    orbitGroup.add(satellite);
-    cluster.add(orbitGroup);
 
     const starsGeometry = new THREE.BufferGeometry();
     const starsCount = 700;
@@ -133,8 +114,8 @@ export default function SceneCanvas() {
     const pointer = { x: 0, y: 0 };
     const clock = new THREE.Clock();
     let animationFrame = 0;
-    let baseX = 2.4;
-    let baseY = 0.2;
+    let baseX = -3.2;
+    let baseY = 0.55;
 
     const resize = () => {
       const width = window.innerWidth;
@@ -144,8 +125,8 @@ export default function SceneCanvas() {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
 
-      baseX = width < 1024 ? 0.2 : 2.4;
-      baseY = width < 1024 ? 0 : 0.2;
+      baseX = width < 1024 ? 0.15 : -3.2;
+      baseY = width < 1024 ? 0 : 0.55;
     };
 
     const onPointerMove = (event) => {
@@ -158,16 +139,20 @@ export default function SceneCanvas() {
       const scroll = window.scrollY / Math.max(window.innerHeight, 1);
       const motionFactor = mediaQuery.matches ? 0.24 : 1;
 
-      cluster.rotation.x = elapsed * 0.08 * motionFactor + pointer.y * 0.24;
-      cluster.rotation.y = elapsed * 0.14 * motionFactor + pointer.x * 0.42;
+      cluster.rotation.x = elapsed * 0.05 * motionFactor + pointer.y * 0.18;
+      cluster.rotation.y = elapsed * 0.1 * motionFactor + pointer.x * 0.28;
       cluster.position.x = baseX + pointer.x * 0.9;
       cluster.position.y = baseY - scroll * 0.55 + pointer.y * -0.45;
 
-      halo.rotation.z += 0.0022 * motionFactor;
-      haloTwo.rotation.y -= 0.003 * motionFactor;
-      wire.rotation.x -= 0.0014 * motionFactor;
-      orbitGroup.rotation.z = elapsed * 0.62 * motionFactor;
-      satellite.position.set(Math.cos(elapsed * 0.62) * 4.15, Math.sin(elapsed * 0.62) * 1.2, 0.9);
+      if (model) {
+        model.rotation.y += 0.0035 * motionFactor;
+      }
+
+      if (fallbackMesh) {
+        fallbackMesh.rotation.y += 0.0042 * motionFactor;
+        fallbackMesh.rotation.x += 0.0018 * motionFactor;
+      }
+
       stars.rotation.y = elapsed * 0.012 * motionFactor;
       stars.position.y = -scroll * 0.28;
 
@@ -187,16 +172,25 @@ export default function SceneCanvas() {
       window.removeEventListener('pointermove', onPointerMove);
 
       starsGeometry.dispose();
-      core.geometry.dispose();
-      core.material.dispose();
-      halo.geometry.dispose();
-      halo.material.dispose();
-      haloTwo.geometry.dispose();
-      haloTwo.material.dispose();
-      wire.geometry.dispose();
-      wire.material.dispose();
-      satellite.geometry.dispose();
-      satellite.material.dispose();
+      if (fallbackMesh) {
+        fallbackMesh.geometry.dispose();
+        fallbackMesh.material.dispose();
+      }
+
+      if (model) {
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.geometry?.dispose();
+
+            if (Array.isArray(child.material)) {
+              child.material.forEach((material) => material.dispose?.());
+            } else {
+              child.material?.dispose?.();
+            }
+          }
+        });
+      }
+
       renderer.dispose();
     };
   }, []);

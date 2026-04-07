@@ -36,11 +36,16 @@ export default function Contact() {
         >
           <p className="section-kicker">Contact</p>
           <h2 className="section-title mt-4">
-            If you want the site to feel premium, the details need to be intentional.
+            If you want the product to feel more premium, strategic, and trustworthy, let&apos;s talk.
           </h2>
+          <div
+            data-animate="line"
+            className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
+          />
           <p className="section-subtitle">
-            I&apos;m open to freelance builds, portfolio redesigns, DevOps support, and product work
-            where design quality and engineering quality matter equally.
+            I&apos;m available for portfolio rebuilds, landing pages, design-led frontend work, and
+            infrastructure-backed product delivery where visual quality and engineering quality need
+            to move together.
           </p>
 
           <div
@@ -48,6 +53,17 @@ export default function Contact() {
             data-animate="stagger"
           >
             <div className="space-y-4">
+              <div className="flex flex-wrap gap-2" data-animate="stagger">
+                <span data-animate-item className="pill text-xs">
+                  Portfolio Rebuilds
+                </span>
+                <span data-animate-item className="pill text-xs">
+                  Landing Pages
+                </span>
+                <span data-animate-item className="pill text-xs">
+                  Frontend + DevOps
+                </span>
+              </div>
               <a
                 data-animate-item
                 href="mailto:krishika.dev@example.com"
@@ -57,7 +73,7 @@ export default function Contact() {
               </a>
               <div className="flex flex-wrap gap-3">
                 <a href="#projects" className="btn-primary">
-                  Review Projects
+                  Review Work
                 </a>
                 <a href="mailto:krishika.dev@example.com" className="btn-secondary">
                   Send Email
