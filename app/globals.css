@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --bg-0: #07111f;
-  --bg-1: #0d1728;
-  --bg-2: #172336;
-  --text-0: #f3f7fb;
-  --text-1: #98a9bc;
-  --text-2: #6d8095;
-  --stroke: rgba(173, 217, 255, 0.16);
-  --panel: rgba(8, 19, 36, 0.58);
-  --panel-strong: rgba(10, 24, 43, 0.82);
-  --accent: #81cbff;
-  --accent-warm: #ffbf72;
+  --bg-0: #fffdfd;
+  --bg-1: #fff6fb;
+  --bg-2: #ffe6f1;
+  --text-0: #25141d;
+  --text-1: #65475a;
+  --text-2: #9f7a8d;
+  --stroke: rgba(211, 121, 167, 0.16);
+  --panel: rgba(255, 255, 255, 0.76);
+  --panel-strong: rgba(255, 242, 248, 0.9);
+  --accent: #e25598;
+  --accent-soft: #f8bed8;
 }
 
 * {
@@ -34,9 +34,10 @@ html {
 body {
   color: var(--text-0);
   background:
-    radial-gradient(circle at 15% 10%, rgba(129, 203, 255, 0.16), transparent 28%),
-    radial-gradient(circle at 85% 12%, rgba(255, 191, 114, 0.12), transparent 24%),
-    linear-gradient(180deg, #11213a 0%, var(--bg-1) 22%, var(--bg-0) 58%, #060c14 100%);
+    radial-gradient(circle at 8% 10%, rgba(255, 206, 228, 0.78), transparent 26%),
+    radial-gradient(circle at 92% 14%, rgba(255, 239, 247, 0.96), transparent 24%),
+    radial-gradient(circle at 50% 85%, rgba(255, 221, 237, 0.52), transparent 26%),
+    linear-gradient(180deg, #fffefd 0%, var(--bg-1) 38%, #fff3f8 100%);
 }
 
 a {
@@ -45,8 +46,8 @@ a {
 }
 
 ::selection {
-  background: rgba(129, 203, 255, 0.28);
-  color: #ffffff;
+  background: rgba(226, 85, 152, 0.22);
+  color: #2b1621;
 }
 
 @layer utilities {
@@ -59,31 +60,50 @@ a {
   }
 
   .section-kicker {
-    @apply mono text-[11px] uppercase tracking-[0.34em] text-sky-100/60;
+    @apply mono text-[11px] uppercase tracking-[0.34em] text-rose-500;
   }
 
   .section-title {
-    @apply text-3xl font-semibold tracking-tight text-slate-50 md:text-5xl;
+    @apply text-3xl font-semibold tracking-tight text-zinc-950 md:text-5xl;
     font-family: var(--font-sora), sans-serif;
   }
 
   .section-subtitle {
-    @apply mt-4 max-w-2xl text-sm leading-relaxed text-slate-300/75 md:text-base;
+    @apply mt-4 max-w-2xl text-sm leading-relaxed text-zinc-600 md:text-base;
   }
 
   .panel {
-    @apply rounded-[28px] border backdrop-blur-xl;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.24);
+    @apply rounded-[30px] border border-white/60 backdrop-blur-xl;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 243, 249, 0.72));
+    box-shadow:
+      0 22px 70px rgba(224, 150, 183, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   .pill {
-    @apply rounded-full border px-4 py-2 text-sm text-slate-200/85;
-    background: rgba(255, 255, 255, 0.05);
+    @apply rounded-full border border-rose-200/70 px-4 py-2 text-sm text-zinc-700;
+    background: rgba(255, 245, 250, 0.92);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full border border-rose-300 bg-rose-500 px-6 py-3 text-sm font-medium text-white transition;
+    box-shadow: 0 14px 32px rgba(226, 85, 152, 0.28);
+  }
+
+  .btn-primary:hover {
+    @apply border-rose-400 bg-rose-600;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-rose-200/80 bg-white/80 px-6 py-3 text-sm font-medium text-zinc-800 transition;
+  }
+
+  .btn-secondary:hover {
+    @apply border-rose-300 bg-white text-zinc-950;
   }
 
   .text-glow {
-    text-shadow: 0 0 40px rgba(129, 203, 255, 0.18);
+    text-shadow: 0 18px 38px rgba(233, 132, 176, 0.16);
   }
 
   .mono {
@@ -101,12 +121,12 @@ a {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.14;
+  opacity: 0.18;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+    linear-gradient(rgba(226, 85, 152, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 85, 152, 0.03) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
 }
 
 .scene-canvas {
@@ -116,14 +136,14 @@ a {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.56;
 }
 
 .mesh-gradient {
   background:
-    radial-gradient(circle at 20% 20%, rgba(129, 203, 255, 0.22), transparent 32%),
-    radial-gradient(circle at 75% 30%, rgba(255, 191, 114, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.92), transparent 25%),
+    radial-gradient(circle at 78% 26%, rgba(246, 181, 213, 0.55), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 239, 246, 0.74));
 }
 
 .section-frame {
@@ -133,9 +153,9 @@ a {
 .section-frame::before {
   content: '';
   position: absolute;
-  inset: 0 auto 0 1rem;
+  inset: 0 auto 0 1.25rem;
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(129, 203, 255, 0.16), transparent);
+  background: linear-gradient(180deg, transparent, rgba(226, 85, 152, 0.18), transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -145,7 +165,7 @@ a {
 
   .scene-canvas,
   .site-noise {
-    opacity: 0.35;
+    opacity: 0.2;
   }
 }
 

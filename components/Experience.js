@@ -9,21 +9,21 @@ const experiences = [
     company: 'Tech Innovation Labs',
     period: '2023 - Present',
     detail:
-      'Led platform modernization and rollout automation, reducing deployment cycle time and improving release confidence.',
+      'Led platform modernization, interface refinement, and rollout automation with a focus on both visual quality and release confidence.',
   },
   {
     role: 'DevOps Engineer',
     company: 'CloudScale Solutions',
     period: '2021 - 2022',
     detail:
-      'Implemented Infrastructure as Code and observability workflows to improve uptime, incident response, and cloud efficiency.',
+      'Implemented Infrastructure as Code, observability workflows, and cloud optimization systems to improve uptime and delivery speed.',
   },
   {
     role: 'Full Stack Developer',
     company: 'Digital Ventures Inc',
     period: '2020 - 2021',
     detail:
-      'Built and shipped customer-facing web applications with scalable APIs and strong frontend performance practices.',
+      'Built customer-facing applications with scalable APIs, thoughtful UI decisions, and strong performance practices.',
   },
 ];
 
@@ -40,11 +40,11 @@ export default function Experience() {
         >
           <p className="section-kicker">Experience</p>
           <h2 className="section-title mt-4">
-            A timeline shaped by delivery, scale, and calm execution.
+            A career shaped by product polish, delivery discipline, and scale.
           </h2>
           <p className="section-subtitle">
-            Roles where infrastructure discipline and product craftsmanship had to coexist under
-            real deadlines.
+            I bring the mindset of a builder who wants the front end to feel refined and the backend
+            to behave flawlessly.
           </p>
         </motion.div>
 
@@ -65,13 +65,11 @@ export default function Experience() {
               className="panel p-6"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h3 className="text-lg font-semibold text-slate-100 md:text-xl">{item.role}</h3>
-                <span className="mono text-xs uppercase tracking-[0.2em] text-slate-300/60">
-                  {item.period}
-                </span>
+                <h3 className="text-lg font-semibold text-zinc-950 md:text-xl">{item.role}</h3>
+                <span className="mono text-xs uppercase tracking-[0.2em] text-zinc-400">{item.period}</span>
               </div>
-              <p className="mt-2 text-sm font-medium text-sky-100/75">{item.company}</p>
-              <p className="mt-3 text-sm leading-7 text-slate-300/72 md:text-base">{item.detail}</p>
+              <p className="mt-2 text-sm font-medium text-rose-600">{item.company}</p>
+              <p className="mt-3 text-sm leading-7 text-zinc-600 md:text-base">{item.detail}</p>
             </motion.article>
           ))}
         </motion.div>

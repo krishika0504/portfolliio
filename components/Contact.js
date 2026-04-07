@@ -36,31 +36,41 @@ export default function Contact() {
         >
           <p className="section-kicker">Contact</p>
           <h2 className="section-title mt-4">
-            Open to ambitious product, platform, and freelance work.
+            If you want the site to feel premium, the details need to be intentional.
           </h2>
           <p className="section-subtitle">
-            Open to collaboration, consulting, and full-time opportunities in DevOps and full stack
-            development.
+            I&apos;m open to freelance builds, portfolio redesigns, DevOps support, and product work
+            where design quality and engineering quality matter equally.
           </p>
 
           <div
-            className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+            className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"
             data-animate="stagger"
           >
-            <a
-              data-animate-item
-              href="mailto:krishika.dev@example.com"
-              className="mono text-sm text-slate-100 transition hover:text-white"
-            >
-              krishika.dev@example.com
-            </a>
+            <div className="space-y-4">
+              <a
+                data-animate-item
+                href="mailto:krishika.dev@example.com"
+                className="mono inline-block text-sm text-zinc-900 transition hover:text-rose-600"
+              >
+                krishika.dev@example.com
+              </a>
+              <div className="flex flex-wrap gap-3">
+                <a href="#projects" className="btn-primary">
+                  Review Projects
+                </a>
+                <a href="mailto:krishika.dev@example.com" className="btn-secondary">
+                  Send Email
+                </a>
+              </div>
+            </div>
 
             <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="flex gap-3"
+              className="flex flex-wrap gap-3"
             >
               {socials.map((social) => {
                 const Icon = social.icon;
@@ -73,7 +83,7 @@ export default function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-sm text-slate-200/82 transition hover:border-white/30 hover:text-white"
+                    className="inline-flex items-center gap-2 rounded-full border border-rose-200 bg-white/78 px-4 py-2 text-sm text-zinc-700 transition hover:border-rose-300 hover:text-zinc-950"
                   >
                     <Icon className="h-4 w-4" />
                     {social.label}

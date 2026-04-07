@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,11 +59,11 @@ export default function Navbar() {
         transition={{ duration: 0.5 }}
         className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-full border px-4 py-3 backdrop-blur-xl transition-all sm:px-6 ${
           isScrolled
-            ? 'border-sky-100/15 bg-slate-950/65 shadow-[0_18px_45px_rgba(0,0,0,0.28)]'
-            : 'border-white/10 bg-slate-950/30'
+            ? 'border-rose-200/80 bg-white/72 shadow-[0_18px_44px_rgba(224,150,183,0.18)]'
+            : 'border-white/80 bg-white/48'
         }`}
       >
-        <a href="#home" className="text-sm font-semibold tracking-[0.26em] text-slate-100 sm:text-base">
+        <a href="#home" className="text-sm font-semibold tracking-[0.28em] text-zinc-950 sm:text-base">
           KRISHIKA
         </a>
 
@@ -75,14 +75,14 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   className={`relative rounded-full px-4 py-2 text-sm transition ${
-                    isActive ? 'text-white' : 'text-slate-300/70 hover:text-slate-100'
+                    isActive ? 'text-rose-700' : 'text-zinc-600 hover:text-zinc-950'
                   }`}
                 >
                   {link.name}
                   {isActive && (
                     <motion.span
                       layoutId="active-nav"
-                      className="absolute inset-0 -z-10 rounded-full border border-sky-100/20 bg-sky-100/[0.08]"
+                      className="absolute inset-0 -z-10 rounded-full border border-rose-200 bg-rose-100/80"
                       transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                     />
                   )}
@@ -95,7 +95,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="rounded-full border border-white/15 p-2 text-slate-300 transition hover:text-white md:hidden"
+          className="rounded-full border border-rose-200/80 p-2 text-zinc-700 transition hover:text-zinc-950 md:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -112,14 +112,14 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 w-full max-w-6xl rounded-[28px] border border-white/10 bg-slate-950/90 p-2 backdrop-blur-xl md:hidden"
+            className="mx-auto mt-2 w-full max-w-6xl rounded-[28px] border border-rose-200/70 bg-white/90 p-2 backdrop-blur-xl md:hidden"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block rounded-2xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+                className="block rounded-2xl px-3 py-2 text-sm text-zinc-700 transition hover:bg-rose-50 hover:text-zinc-950"
               >
                 {link.name}
               </a>
