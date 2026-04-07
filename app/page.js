@@ -15,6 +15,7 @@ export default function Home() {
       <ScrollAnimator />
       <main className="site-shell min-h-screen bg-site text-zinc-950">
         <SceneCanvas />
+        <div className="aurora-layer" aria-hidden="true" />
         <div className="site-noise" aria-hidden="true" />
         <Navbar />
         <Hero />

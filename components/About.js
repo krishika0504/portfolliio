@@ -22,6 +22,15 @@ export default function About() {
             data-animate="line"
             className="mt-6 h-px w-24 bg-gradient-to-r from-rose-300 via-rose-400 to-transparent"
           />
+          <div className="mt-10 overflow-hidden rounded-[28px] border border-white/60 bg-white/40 p-2 shadow-[0_22px_70px_rgba(224,150,183,0.16)] backdrop-blur-xl max-w-sm">
+             <div className="overflow-hidden rounded-[20px] aspect-[4/5] relative">
+               <img 
+                 src="/images/anime_dev.png" 
+                 alt="Anime Software Developer Aesthetic" 
+                 className="w-full h-full object-cover object-center absolute inset-0 hover:scale-105 transition-transform duration-700 ease-out" 
+               />
+             </div>
+          </div>
         </div>
 
         <div className="grid gap-6">

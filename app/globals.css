@@ -116,6 +116,31 @@ a {
   isolation: isolate;
 }
 
+.aurora-layer {
+  position: fixed;
+  inset: -12% -8% auto -8%;
+  height: 72vh;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(56px);
+  opacity: 0.5;
+  background:
+    radial-gradient(circle at 18% 45%, rgba(244, 143, 190, 0.28), transparent 38%),
+    radial-gradient(circle at 78% 34%, rgba(255, 218, 233, 0.35), transparent 44%),
+    radial-gradient(circle at 54% 16%, rgba(251, 168, 204, 0.2), transparent 40%);
+  animation: auroraDrift 16s ease-in-out infinite;
+}
+
+.aurora-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 40% 62%, rgba(255, 255, 255, 0.38), transparent 42%),
+    radial-gradient(circle at 70% 75%, rgba(250, 176, 209, 0.22), transparent 40%);
+  animation: auroraDrift 12s ease-in-out infinite reverse;
+}
+
 .site-noise {
   position: fixed;
   inset: 0;
@@ -146,6 +171,19 @@ a {
     linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 239, 246, 0.74));
 }
 
+.float-soft {
+  animation: floatSoft 8s ease-in-out infinite;
+}
+
+.float-soft-delay {
+  animation: floatSoft 9s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+.pulse-chip {
+  animation: pulseChip 2.8s ease-in-out infinite;
+}
+
 .section-frame {
   position: relative;
 }
@@ -158,6 +196,36 @@ a {
   background: linear-gradient(180deg, transparent, rgba(226, 85, 152, 0.18), transparent);
 }
 
+@keyframes auroraDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 2.4%, 0) scale(1.04);
+  }
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes pulseChip {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(226, 85, 152, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(226, 85, 152, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -166,6 +234,14 @@ a {
   .scene-canvas,
   .site-noise {
     opacity: 0.2;
+  }
+
+  .aurora-layer,
+  .aurora-layer::after,
+  .float-soft,
+  .float-soft-delay,
+  .pulse-chip {
+    animation: none;
   }
 }
 

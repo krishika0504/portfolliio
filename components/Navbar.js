@@ -63,15 +63,24 @@ export default function Navbar() {
             : 'border-white/80 bg-white/48'
         }`}
       >
-        <a href="#home" className="text-sm font-semibold tracking-[0.28em] text-zinc-950 sm:text-base">
+        <motion.a
+          href="#home"
+          whileHover={{ y: -1 }}
+          className="text-sm font-semibold tracking-[0.28em] text-zinc-950 sm:text-base"
+        >
           KRISHIKA
-        </a>
+        </motion.a>
 
         <ul className="hidden items-center gap-2 md:flex">
-          {navLinks.map((link) => {
+          {navLinks.map((link, index) => {
             const isActive = activeSection === link.href.slice(1);
             return (
-              <li key={link.name}>
+              <motion.li
+                key={link.name}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.06 * index }}
+              >
                 <a
                   href={link.href}
                   className={`relative rounded-full px-4 py-2 text-sm transition ${
@@ -87,7 +96,7 @@ export default function Navbar() {
                     />
                   )}
                 </a>
-              </li>
+              </motion.li>
             );
           })}
         </ul>

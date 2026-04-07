@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export default function SceneCanvas() {
   const canvasRef = useRef(null);
@@ -43,51 +42,6 @@ export default function SceneCanvas() {
     const cluster = new THREE.Group();
     scene.add(cluster);
 
-    let model = null;
-    let fallbackMesh = null;
-
-    const loader = new GLTFLoader();
-    loader.load(
-      '/models/riko_mikogami.glb',
-      (gltf) => {
-        model = gltf.scene;
-
-        const box = new THREE.Box3().setFromObject(model);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
-        const maxAxis = Math.max(size.x, size.y, size.z) || 1;
-        const targetSize = 5.2;
-        const scale = targetSize / maxAxis;
-
-        model.scale.setScalar(scale);
-        model.position.set(-center.x * scale, -center.y * scale + 0.8, -center.z * scale);
-
-        model.traverse((child) => {
-          if (child.isMesh) {
-            child.frustumCulled = false;
-          }
-        });
-
-        cluster.add(model);
-      },
-      undefined,
-      () => {
-        fallbackMesh = new THREE.Mesh(
-          new THREE.IcosahedronGeometry(2.2, 8),
-          new THREE.MeshPhysicalMaterial({
-            color: 0xfff7fb,
-            roughness: 0.16,
-            metalness: 0.1,
-            transmission: 0.45,
-            thickness: 1,
-            transparent: true,
-            opacity: 0.92,
-          })
-        );
-        cluster.add(fallbackMesh);
-      }
-    );
-
     const starsGeometry = new THREE.BufferGeometry();
     const starsCount = 700;
     const positions = new Float32Array(starsCount * 3);
@@ -103,10 +57,11 @@ export default function SceneCanvas() {
     const stars = new THREE.Points(
       starsGeometry,
       new THREE.PointsMaterial({
-        color: 0xf1bfd7,
-        size: 0.05,
+        color: 0xff6b9d, // Vibrant pink
+        size: 0.18,      // Much larger particles
         transparent: true,
-        opacity: 0.42,
+        opacity: 0.85,   // Higher visibility
+        blending: THREE.AdditiveBlending, // Glow effect
       })
     );
     scene.add(stars);
@@ -144,17 +99,11 @@ export default function SceneCanvas() {
       cluster.position.x = baseX + pointer.x * 0.9;
       cluster.position.y = baseY - scroll * 0.55 + pointer.y * -0.45;
 
-      if (model) {
-        model.rotation.y += 0.0035 * motionFactor;
-      }
-
-      if (fallbackMesh) {
-        fallbackMesh.rotation.y += 0.0042 * motionFactor;
-        fallbackMesh.rotation.x += 0.0018 * motionFactor;
-      }
-
-      stars.rotation.y = elapsed * 0.012 * motionFactor;
-      stars.position.y = -scroll * 0.28;
+      stars.rotation.y = elapsed * 0.03 * motionFactor; // Faster rotation
+      stars.rotation.x = elapsed * 0.01 * motionFactor; // Slight vertical variance
+      stars.position.y = -scroll * 0.28 + pointer.y * 0.5; // React to mouse
+      stars.position.x = pointer.x * 0.5;
+      stars.material.opacity = 0.72 + Math.sin(elapsed * 1.9) * 0.12;
 
       renderer.render(scene, camera);
       animationFrame = window.requestAnimationFrame(renderFrame);
@@ -172,25 +121,7 @@ export default function SceneCanvas() {
       window.removeEventListener('pointermove', onPointerMove);
 
       starsGeometry.dispose();
-      if (fallbackMesh) {
-        fallbackMesh.geometry.dispose();
-        fallbackMesh.material.dispose();
-      }
-
-      if (model) {
-        model.traverse((child) => {
-          if (child.isMesh) {
-            child.geometry?.dispose();
-
-            if (Array.isArray(child.material)) {
-              child.material.forEach((material) => material.dispose?.());
-            } else {
-              child.material?.dispose?.();
-            }
-          }
-        });
-      }
-
+      stars.material.dispose();
       renderer.dispose();
     };
   }, []);

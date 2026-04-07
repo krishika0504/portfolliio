@@ -7,6 +7,7 @@ const projects = [
   {
     tag: 'Featured',
     title: 'Maison Roseline Commerce',
+    image: '/images/anime_commerce.png',
     description:
       'A luxury storefront concept combining editorial layouts, motion-led storytelling, and a friction-light checkout journey.',
     impact:
@@ -17,6 +18,7 @@ const projects = [
   {
     tag: 'Platform',
     title: 'VelvetOps Release Console',
+    image: '/images/anime_server.png',
     description:
       'A deployment control surface for approvals, rollout visibility, environment health, and release management.',
     impact:
@@ -26,6 +28,7 @@ const projects = [
   {
     tag: 'Analytics',
     title: 'Cloud Cost Atelier',
+    video: 'https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
     description:
       'A polished cost intelligence dashboard surfacing anomalies, weekly summaries, and optimization opportunities for cloud teams.',
     impact:
@@ -35,6 +38,7 @@ const projects = [
   {
     tag: 'Experience',
     title: 'Studio Reservation Suite',
+    image: '/images/anime_dev.png',
     description:
       'A branded reservations platform with elegant scheduling flows, instant confirmations, and streamlined admin tooling.',
     impact:
@@ -44,6 +48,7 @@ const projects = [
   {
     tag: 'Content',
     title: 'Signature Portfolio CMS',
+    video: 'https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
     description:
       'A publishing workflow for design-led portfolio pages with reusable sections and media optimization.',
     impact: 'Made high-quality personal branding easier to maintain and update over time.',
@@ -108,6 +113,26 @@ export default function Projects() {
                   data-animate="line"
                   className="mt-5 h-px w-full bg-gradient-to-r from-rose-200 via-rose-300 to-transparent"
                 />
+
+                {project.image && (
+                  <div className="mt-5 overflow-hidden rounded-[18px] h-36 aspect-video">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-700 ease-out" 
+                    />
+                  </div>
+                )}
+
+                {project.video && (
+                  <div className="mt-5 overflow-hidden rounded-[18px] h-36 aspect-video bg-black/50">
+                    <video 
+                      src={project.video} 
+                      autoPlay loop muted playsInline 
+                      className="w-full h-full object-cover opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-700 ease-out" 
+                    />
+                  </div>
+                )}
 
                 <h3 className="mt-6 text-2xl font-semibold text-zinc-950">{project.title}</h3>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-600">{project.description}</p>
